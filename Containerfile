@@ -1,5 +1,4 @@
-# Use Python 3.11 slim image as base
-FROM python:3.11-slim
+FROM python:latest
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -9,11 +8,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
-    wget \
-    curl \
-    build-essential \
-    libgl1-mesa-glx \
-    libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
