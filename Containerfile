@@ -11,13 +11,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
-WORKDIR /app
+WORKDIR /opt
 
 # Clone ComfyUI repository
-RUN git clone https://github.com/comfyanonymous/ComfyUI.git /app/ComfyUI
+RUN git clone https://github.com/comfyanonymous/ComfyUI.git /opt/comfyui
 
 # Set working directory to ComfyUI
-WORKDIR /app/ComfyUI
+WORKDIR /opt/comfyui
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
