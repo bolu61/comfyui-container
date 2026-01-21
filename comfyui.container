@@ -1,0 +1,16 @@
+[Unit]
+Description=Comfyui server
+Wants=network-online.target
+After=network-online.target
+
+[Container]
+Image=comfyui:latest
+AddDevice=nvidia.com/gpu=all
+Volume=comfyui:/opt/comfyui
+PublishPort=8188:8188
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
