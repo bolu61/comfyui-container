@@ -30,13 +30,7 @@ docker build -t comfyui:latest -f Containerfile .
 Run the container with default settings:
 
 ```bash
-podman run -p 8188:8188 comfyui:latest
-```
-
-Or with Docker:
-
-```bash
-docker run -p 8188:8188 comfyui:latest
+podman run --device nvidia.com/gpu=all -p 8188:8188 comfyui:latest
 ```
 
 Access the ComfyUI web interface at: `http://localhost:8188`
@@ -46,10 +40,13 @@ Access the ComfyUI web interface at: `http://localhost:8188`
 To persist models and outputs, mount volumes:
 
 ```bash
-podman run -p 8188:8188 \
-  -v ./models:/app/ComfyUI/models \
-  -v ./input:/app/ComfyUI/input \
-  -v ./output:/app/ComfyUI/output \
+podman run \
+  --device nvidia.com/gpu=all \
+  -p 8188:8188 \
+  -v ./models:/opt/comfyui/models \
+  -v ./input:/opt/comfyui/input \
+  -v ./output:/opt/comfyui/output \
+  -v ./custom_nodes:/opt/comfyui/custom_nodes \
   comfyui:latest
 ```
 
@@ -65,10 +62,10 @@ podman run -p 8188:8188 \
 
 ## Directory Structure
 
-- `/app/ComfyUI/models` - Model files (checkpoints, VAE, LoRAs, etc.)
-- `/app/ComfyUI/input` - Input images and files
-- `/app/ComfyUI/output` - Generated outputs
-- `/app/ComfyUI/custom_nodes` - Custom node extensions
+- `/opt/comfyui/models` - Model files (checkpoints, VAE, LoRAs, etc.)
+- `/opt/comfyui/input` - Input images and files
+- `/opt/comfyui/output` - Generated outputs
+- `/opt/comfyui/custom_nodes` - Custom node extensions
 
 ## Requirements
 
