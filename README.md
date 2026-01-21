@@ -5,7 +5,7 @@ A container image for running [ComfyUI](https://github.com/comfyanonymous/ComfyU
 ## Features
 
 - Python 3.11 based image
-- Pre-configured ComfyUI installation
+- Pre-configured ComfyUI installation (latest from master branch)
 - Web interface accessible on port 8188
 - Support for custom models and nodes
 
@@ -75,6 +75,12 @@ podman run -p 8188:8188 \
 - Container runtime (Podman or Docker)
 - At least 4GB of RAM (more recommended for larger models)
 - GPU support recommended for better performance (requires additional configuration)
+
+## Security Notes
+
+- The container runs ComfyUI listening on all interfaces (0.0.0.0) to allow access from outside the container
+- When deploying in production, use appropriate firewall rules and network policies
+- Only expose port 8188 to trusted networks
 
 ## License
 
