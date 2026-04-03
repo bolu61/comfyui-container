@@ -6,7 +6,11 @@ After=network-online.target
 [Container]
 Image=comfyui:latest
 AddDevice=nvidia.com/gpu=all
-Volume=comfyui:/opt/comfyui
+Volume=%h/.local/share/comfyui/models:/opt/comfyui/models:z
+Volume=%h/.local/share/comfyui/custom_nodes:/opt/comfyui/custom_nodes:z
+Volume=%h/.local/share/comfyui/input:/opt/comfyui/input:z
+Volume=%h/.local/share/comfyui/output:/opt/comfyui/output:z
+Volume=%h/.local/share/comfyui/user:/opt/comfyui/user:z
 PublishPort=8188:8188
 
 [Service]
